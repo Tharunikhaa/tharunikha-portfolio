@@ -3,6 +3,21 @@ if (yearElement) {
   yearElement.textContent = String(new Date().getFullYear());
 }
 
+const collapsedNav = document.getElementById("mainNav");
+const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+if (collapsedNav && window.bootstrap) {
+  const navCollapse = new window.bootstrap.Collapse(collapsedNav, { toggle: false });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth < 992) {
+        navCollapse.hide();
+      }
+    });
+  });
+}
+
 const revealItems = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(
   (entries) => {
@@ -43,13 +58,13 @@ if (meterFills.length > 0) {
 }
 
 const sections = document.querySelectorAll("main section");
-const navLinks = document.querySelectorAll(".nav a");
 
 function setActiveLink() {
   let currentId = "";
+
   sections.forEach((section) => {
     const top = window.scrollY;
-    const sectionTop = section.offsetTop - 120;
+    const sectionTop = section.offsetTop - 140;
     const sectionHeight = section.offsetHeight;
 
     if (top >= sectionTop && top < sectionTop + sectionHeight) {
