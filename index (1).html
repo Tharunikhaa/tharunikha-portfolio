@@ -195,7 +195,10 @@
   /* ---------- HERO ---------- */
   .hero{min-height:100vh; display:flex; align-items:center; padding-top:6rem; padding-bottom:3rem; position:relative; overflow:hidden;}
   .hero-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:3rem; align-items:center;}
-  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-grid .hero-profile{order:-1; margin-bottom:1.5rem;}
+  }
   .hero h1{font-size:clamp(2.3rem, 5vw, 3.6rem); line-height:1.1; margin-bottom:1.3rem;}
   .hero h1 .accent{
     background:linear-gradient(100deg, var(--signal), var(--gold));
@@ -1068,6 +1071,9 @@ Designed and developed the ASIC-Based Reconfigurable Smart Sensor Unit with ALU 
 <footer>© <span id="year"></span> Tharunikha Annadurai.</footer>
 
 <script>
+  // disable right-click context menu
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
   document.getElementById('year').textContent = new Date().getFullYear();
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const supportsHover = window.matchMedia('(pointer:fine)').matches;
